@@ -18,7 +18,7 @@ spec:
         - name: facegram-registery
       containers:
         - name: hashtag-api-server
-          image: ""
+          image: cr.fcgm.dev/facegram/hashtag-service:97519672
           ports:
             - containerPort: 8080
             - containerPort: 30012
