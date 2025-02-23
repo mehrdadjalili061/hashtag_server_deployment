@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hashtag-api-service
+spec:
+  selector:
+    app: hashtag-api-server
+  ports:
+    - name: http-api
+      protocol: TCP
+      port: 31504
+      targetPort: 8080
+      nodePort: 31504
+    - name: grpc-client-port
+      protocol: TCP
+      port: 30012
+      targetPort: 30012
+      nodePort: 30012
+    - name: grpc-manager-port
+      protocol: TCP
+      port: 30013
+      targetPort: 30013
+      nodePort: 30013  
+  type: NodePort

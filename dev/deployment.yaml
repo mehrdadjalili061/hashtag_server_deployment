@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hashtag-api-server
+  labels:
+    app: hashtag-api-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hashtag-api-server
+  template:
+    metadata:
+      labels:
+        app: hashtag-api-server
+    spec:
+      imagePullSecrets:
+        - name: facegram-registery
+      containers:
+        - name: hashtag-api-server
+          image: ""
+          ports:
+            - containerPort: 8080
+            - containerPort: 30012
+            - containerPort: 30013
+          env:
+            - name: NODE_ENV
+              value: "dev"   
+          envFrom:
+            - secretRef:
+                name: grpc-client-configs
+            - secretRef:
+                name: grpc-client-urls 
+            - secretRef:
+                name: sentry-credential
+            - secretRef:
+                name: mongodb-credential
+            - secretRef:
+                name: redis-credential                                             
